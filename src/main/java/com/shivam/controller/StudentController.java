@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shivam.entity.Student;
+import com.shivam.entity.StudentException;
 
 @RestController
 @RequestMapping("/api")
@@ -34,6 +35,10 @@ public class StudentController {
 		list.add(new Student("John", "Wick", 42));
 		list.add(new Student("Bat", "Man", 40));
 		list.add(new Student("Iron", "Man", 36));
+		
+		if(id<0 || id>=list.size()) {
+			throw new StudentException("Student ID not found - "+id);
+		}
 		
 		return list.get(id);
 	}
