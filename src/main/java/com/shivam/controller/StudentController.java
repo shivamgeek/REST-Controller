@@ -58,6 +58,17 @@ public class StudentController {
 		
 	}
 	
+	@ExceptionHandler
+	public ResponseEntity<StudentErrorResponse> handleAllException(Exception e) {
+		
+		StudentErrorResponse error = new StudentErrorResponse();
+		error.setMessage(e.getMessage());
+		error.setTimeStamp(System.currentTimeMillis());
+		error.setStatus(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<StudentErrorResponse>(error, HttpStatus.BAD_REQUEST); 
+		
+	}
+	
 	
 	
 }
